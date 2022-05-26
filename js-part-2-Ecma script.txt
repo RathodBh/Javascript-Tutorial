@@ -183,6 +183,76 @@
             const price = [1000, 700, 200, 100, 400, 500]
             console.log(price.sort()); //[100, 1000, 200, 400, 500, 700]
 
+## CRUD operations
+
+# push():
+    - Used for add one or more element at the end of the element.
+    - Returns the new length of the array
+    - Example:
+        const price = [1000, 700, 200, 100, 400, 500]
+        console.log(price.push(350)); //7 (new length of array)
+        console.log(price); //[1000, 700, 200, 100, 400, 500, 350]
+
+# unshift():
+    - Used for add one or more element at the start of the element.
+    - Returns the new length of the array
+    - Example:
+        const price = [1000, 700, 200, 100, 400, 500]
+        console.log(price.unshift(350, 40)); //8 (new length of array)
+        console.log(price); //[350, 40, 1000, 700, 200, 100, 400, 500]
+
+# pop():
+    - Used for remove the last element of the array and return last element.
+    - Example:
+        const price = [1000, 700, 200, 100, 400, 500]
+        console.log(price.pop()); //500
+        console.log(price); //[1000, 700, 200, 100, 400]
+
+# shift():
+    - Used for remove the first element of the array and return first element.
+    - Example:
+        const price = [1000, 700, 200, 100, 400, 500]
+        console.log(price.shift()); //1000
+        console.log(price); //[700, 200, 100, 400, 500]
+
+------------------------------------------------------------------------
+
+## All operations using only one function
+## splice():
+    - Adds and/or remove element of an array.
+    - Syntax:
+        array_name.splice(starting_index, Number_of_remove_elements, element_you_want_to_push);
+    - If you don't want to delete any element second paramter = 0
+    - It returns the array of deleted elements 
+    - Example 1:
+        const price = [1000, 700, 200, 100, 400, 500]
+        // add element at the last index
+        const new_price = price.splice(7,0,600); 
+        OR
+        const new_price = price.splice(price.length,0,600); 
+        console.log(price) //[1000, 700, 200, 100, 400, 500, 600]
+
+    - Example 2:
+        const price = [1000, 700, 200, 100, 400, 500]
+        // add element at the first index
+        const new_price = price.splice(0,0,600); 
+        console.log(price) //[600, 1000, 700, 200, 100, 400, 500]
+
+    - Example 3:
+        const price = [1000, 700, 200, 100, 400, 500]
+        // update element at the any index
+        const new_price = price.splice(1,1,600); 
+        console.log(price) //[1000, 600, 200, 100, 400, 500]
+
+    - Example 4:
+        const price = [1000, 700, 200, 100, 400, 500]
+        // delete element at the any index
+        const new_price = price.splice(1,1); // remove 1 element from 1st index element
+        console.log(price) //[1000, 200, 100, 400, 500]
+
+        const new_price = price.splice(1,3); // remove 3 element from 1st index element
+        console.log(price) //[1000, 400, 500]
+
 ------------------------------------------------------------------------
 
 # forEach() :
@@ -203,6 +273,105 @@
             console.log("Full array: " + array); //BH, GH,  RS, MS
         })
 
+------------------------------------------------------------------------
+
+# map():
+    - Return the new array containing the result of calling function on every
+        element in this array.
+    - Same as filter method and forEach method.
+    - Syntax:
+        let newArr = array_name.map(callBack(currElem, index, array_name){
+            // return element for newArray, after executing something
+        }[, thisArgument])
+            --------OR---------
+        let newArr = array_name.map((currElem, index, array_name) => {
+            // return element for newArray, after executing something
+        }[, thisArgument])
+
+    - Example:
+        const nums = [1,4,9,16,25]
+        let newNums = nums.map((currElem, index, arr) => {
+            return currElem > 9
+        })
+        console.log(newNums) // [false, false, false, true, true]
+
+    - Example 2:
+        const nums = [1, 4, 9, 16, 25]
+        let newNums = nums.map((currElem, index, arr) => {
+            return `Index: ${index}, Element: ${currElem}, Array: ${arr}`
+        })
+        console.log(newNums) 
+
+        // output:
+        // [
+        //     'Index: 0, Element: 1, Array: 1,4,9,16,25',
+        //     'Index: 1, Element: 4, Array: 1,4,9,16,25',
+        //     'Index: 2, Element: 9, Array: 1,4,9,16,25',
+        //     'Index: 3, Element: 16, Array: 1,4,9,16,25',
+        //     'Index: 4, Element: 25, Array: 1,4,9,16,25'
+        // ]
+
+    - Example 3: multiply each and every element and return element which
+        is only greater than 10
+
+        const num = [2,3,4,6,8]
+        let newArr = num.map((currElem) => {
+            return currElem * 2;
+        }).filter((currElem) => {
+            return currElem > 10;
+        })
+
+        OR
+
+        let newArr = num.map((currElem) => currElem * 2).filter((currElem) => currElem > 10)
+
+        console.log(newArr);
+
+------------------------------------------------------------------------
+
+# reduce():
+    - It is used to (flatten) convert 3D or 2D array into 1D array.
+    - Used for getting a single value.
+    - It takes four arguments:
+        - Accumulator
+        - Current value
+        - Current index
+        - Source Array
+
+    - Example: Total sum of all element
+        let arr = [1,2,3,4,5,6,7,8,9,10];
+        let sum = arr.reduce((acc,currElem) =>{
+            return acc += currElem;
+        });
+        console.log(sum); //55
+
+    - Example2: Total sum of all element and add 10 also
+        let arr = [1,2,3,4,5,6,7,8,9,10];
+        let sum = arr.reduce((acc,currElem) =>{
+            return acc += currElem;
+        },10); 
+        //10 is initial value
+        //it means Accumulator(acc) = 10 first instead of 0
+
+        console.log(sum); //65
+
+    - Example 3: fatten array (2D => 1D)
+        let arr = [ ['a','b'], ['c','d'], ['e','f'] ];
+        let newArray = arr.reduce((acc,currElem) => {
+            return acc.concat(currElem);
+        })
+        console.log(newArray);
+        //[ 'a', 'b', 'c', 'd', 'e', 'f' ]
+
+------------------------------------------------------------------------
+
+# Difference between forEach() and map()
+    forEach: returns undefined
+    map: returns new array
+
+    forEach: Not add any other functions/methods
+    map: It is chainable means, we can add another methods like, reduce(), sort(), filter()
+    
 ------------------------------------------------------------------------
 
 << 7 >> For in loop
@@ -228,3 +397,4 @@
     for(let elements of names){
         console.log(elements); //returns the array values
     }
+
