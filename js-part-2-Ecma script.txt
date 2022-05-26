@@ -1,0 +1,230 @@
+# History   
+    1996 => Javascript
+    1997 => ECMA Script
+    2015 => ES6
+    2016 => ES7
+    2017 => ES8
+    2018 => ES9
+    2019 => ES10
+    2020 => ES11
+
+# ES6 or ES 2015 features
+    - let and const
+    - template String
+    - default arguments
+    - destructuring
+    - object property
+    - arrow function
+    - rest Operator
+    - spread Operator
+
+
+------------------------------------------------------------------------
+
+<< 1 >> Let and const
+
+------------------------------------------------------------------------
+
+# let vs const vs var
+    - const values you can not change
+    - let and var you can change
+    - var is global scope
+    - let and const are block scope
+
+------------------------------------------------------------------------
+
+<< 2 >> Function scope vs block scope
+
+------------------------------------------------------------------------
+
+    var => Global scope/ Function scope
+    let & const => Block scope
+
+------------------------------------------------------------------------
+
+<< 3 >> Template literals
+
+------------------------------------------------------------------------
+
+    - Syntax:
+        console.log(`string  ${expression}`);
+    - Example:
+        console.log(`5 * 3 is  ${5 * 3}`);
+
+------------------------------------------------------------------------
+
+<< 4 >> Default paramter
+
+------------------------------------------------------------------------
+
+    - Example:
+        //declaration
+        function mult(a, b=1){
+            return a*b;
+        }
+
+        //calling:
+        console.log(mult(5)); //output: 5*1 = 5
+
+------------------------------------------------------------------------
+
+<< 5 >> Arrow function/ Fat arrow function
+
+------------------------------------------------------------------------
+
+    - Function definition is required first before the calling
+    - Syntax:
+        var function_name = (parameters) => {
+            //parameters
+        }
+    - Example:
+        const sum = () => {
+            return `sum is ${(a=5)+(b=4)}`;
+        }
+
+        OR
+
+        const sum = () => `sum is ${(a=5)+(b=4)}`;
+
+------------------------------------------------------------------------
+
+<< 6 >> Arrays
+
+------------------------------------------------------------------------
+
+- Collection of multiple values
+- Javascript array can hold multiple datatype values
+- Syntax:
+    var array_name = [value1, value2, ...... , valueN]
+
+## What we will do:
+    - Traversal of an array
+    - Searching and filter
+    - Sort & compare
+    - Insert, add, replace, delete element(CRUD)
+    - Map(), Reduce(), Filter()
+
+------------------------------------------------------------------------
+
+# Traversal of an array
+    - Get the data of array using index
+    - index start from 0
+    - Example:
+        var arr[] = ["BH",22, "male"];
+        console.log(`My name is ${arr[0]}`);
+        console.log(`My age is ${arr[1]}`);
+        console.log(`Gender: ${arr[2]}`);
+
+    - Total elements:
+        console.log(`length: ${arr.length}`);
+
+    - Print all data using for in loop 
+
+------------------------------------------------------------------------
+# array Functions:
+# Searching:
+    
+    var arr[] = ["BH",22, "male", "BH"];
+
+    - indexOf():
+        console.log(indexOf("BH")); //0
+        console.log(indexOf("male",3)); //(element, start_index_from_search) => -1
+    - lastIndexOf()
+        console.log(indexOf("BH")); //3
+    - includes()
+        console.log(arr.includes("BH")) //true
+        console.log(arr.includes("BH",2)) //true
+
+# filter
+    - find()
+        - find first occurance
+        - Example:
+            const price = [100, 200, 300, 400, 500]
+            const findElem = price.find((cuurVal)=>{
+                return currElem > 400;
+            })
+
+            OR 
+
+            const findElem = price.find((currVal)=> currElem > 400));
+            console.log(findElem);//100
+
+    - findIndex()
+        - find first occurance
+        - Example:
+            const price = [100, 200, 300, 400, 500]
+            const findElem = price.findIndex((cuurVal)=>{
+                return currElem > 400;
+            })
+
+            OR 
+
+            const findElem = price.findIndex((currVal)=> currElem > 400));
+            console.log(findElem); //0
+
+    - filter()
+        - used for filter the data
+        - returns the array of matching filter
+        - Example:
+            const price = [100, 200, 300, 400, 500]
+            const findElem = price.filter((cuurVal, index)=>{
+                return currElem > 400;
+            })
+
+            OR 
+
+            const findElem = price.findIndex((currVal, index)=> currElem > 400));
+            console.log(findElem); //[100, 200, 300]
+        
+# Sort
+    - sort()
+        - sort by converting into the string
+        - Example:
+            const price = [1000, 700, 200, 100, 400, 500]
+            console.log(price.sort()); //[100, 1000, 200, 400, 500, 700]
+
+------------------------------------------------------------------------
+
+# forEach() :
+    - Used for access each and every elements of an array.
+    - Example: 
+        var frds = ["BH", "GH", "RS", "MS"];
+        frds.forEach(function(element, index, array){
+            console.log("Array value: " + element); //BH
+            console.log("Index:  " + index); //0
+            console.log("Full array: " + array); //BH, GH,  RS, MS
+        })
+    
+    - Example using fat arrow function:
+        var frds = ["BH", "GH", "RS", "MS"];
+        frds.forEach((element, index, array) => {
+            console.log("Array value: " + element); //BH
+            console.log("Index:  " + index); //0
+            console.log("Full array: " + array); //BH, GH,  RS, MS
+        })
+
+------------------------------------------------------------------------
+
+<< 7 >> For in loop
+
+------------------------------------------------------------------------
+
+- Used to returns the index of array values.
+- Example:
+    var names = ["BH", "GH", "RS", "MS"];
+    for(let elements in names){
+        console.log(elements); //returns the index of array values
+    }
+
+------------------------------------------------------------------------
+
+<< 8 >> For of loop
+
+------------------------------------------------------------------------
+
+- Used to returns the array values.
+- Example:
+    var names = ["BH", "GH", "RS", "MS"];
+    for(let elements of names){
+        console.log(elements); //returns the array values
+    }

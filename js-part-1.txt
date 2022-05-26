@@ -1,0 +1,197 @@
+- Introduction
+    - Javascript is a text-based programming language used both on the client-side
+        and server-side that allows you to make webpage interactive.
+    - It improves the user experience of webpage by converting it from static
+        to interactive.
+    - Extension: .js 
+
+------------------------------------------------------------------------
+
+- Download VS CODE Editor
+- Create file
+- Code 
+    > console.log("Hello world");
+- Run on browser > inspect > console
+- concate using + sign in console.log()
+OR
+- Terminal
+    > Terminal
+    > New Terminal
+    > Install node using command
+    > Run like this,
+        node filename.js
+    
+------------------------------------------------------------------------
+
+<< 1 >> Values and variables
+
+------------------------------------------------------------------------
+
+# Variables:
+
+- Created using var keyword.
+- Semicolon not required
+- Example: 
+    > var name = "Bh";
+
+------------------------------------------------------------------------
+
+<< 2 >> Datatypes
+
+------------------------------------------------------------------------
+# Datatypes:
+    - undefined
+    - Boolean
+    - Number
+    - String
+    - BigInt
+    - Symbol
+
+- To know type of data using typeof() function.
+    String - String => NaN
+    String + String = String
+
+------------------------------------------------------------------------
+
+# null vs undefined
+- Null is defined and undefined is not defined
+
+EX:
+    //Null
+    var iAmUseless = null;
+
+    //undefined
+    var iAmStandBy
+
+# NaN : Not a Number
+# Challenge:
+    > NaN === NaN => false
+    > Number.NaN === NaN => false
+    > isNaN(NaN) => true
+    > isNaN(Number.NaN) => true
+    
+------------------------------------------------------------------------
+
+<< 3 >> Expression/ Operators
+
+------------------------------------------------------------------------
+
+# Operators:
+    - Assignment (=)
+    - Arithmatic (+, -, *, /, %, ++, --, **)
+    - Comparison(!=, ==, ===, !== >, <, >=, <=, <>)
+    - Logical (&&, ||, !)
+    - String/Concatination (+)
+    - Conditional(Ternary) ( ? : )
+
+------------------------------------------------------------------------
+
+# Simple JS vs Ecma Script 6 (ES6)
+    //Simple JS
+    console.log("Is both are equal? :" + (5==5))
+
+    //ES6
+    console.log(`Is both are equal?: ${5==5}`)
+
+------------------------------------------------------------------------
+
+# == VS ===
+    - == checks only value and === checks values and datatype both
+    - Example:
+        console.log(5=='5') //true
+        console.log(5==='5') //false
+
+
+------------------------------------------------------------------------
+
+<< 4 >> Control statement & Loops 
+
+------------------------------------------------------------------------
+
+# Control statement:
+    - if...else
+    - switch statement
+    - While Loop
+    - Do while
+    - for Loop
+    - for in Loop
+    - for out loop
+    - Ternary statement 
+EX:
+- If... else
+        if(condition){
+            //statement
+        }
+        else if(condition){
+            //statement
+        }
+        else{
+
+        }
+    
+- Switch:
+    switch(condition){
+        case 'Expression1':
+                            //statements
+                            break;
+        case 'Expression2':
+                            //statements
+                            break;
+        default: //statements
+    }
+
+- While loop
+    while(condition){
+        //statement
+        //increment-decrement
+    }
+
+- Do while
+    Do{
+        //statement
+        //increment-decrement
+    }while(condition);
+
+- for loop
+    for(initialization; condition; iteration){
+        //statement
+    }
+
+- For of & for in loop is ES6 category
+
+------------------------------------------------------------------------
+
+# truty & falsy values
+    - falsy : 0, "", undefined, null, NaN, false
+    - truty :  true, 1
+
+
+------------------------------------------------------------------------
+
+<< 5 >> Function 
+
+------------------------------------------------------------------------
+
+# Function definition:
+    function functionName(parameters){
+        //statement
+        //return value[optional]
+    }
+
+# Function calling 
+    functionName();
+
+# Function parameters vs arguments
+    - parameters are defined in function defination
+    - arguments are defined in function call
+
+# DRY : Do Not Repeat Yourself
+
+# Anonymous function Expression
+    - A function declare without name
+    - Syntax:
+        var variable_name = function(paramters){
+            //statements
+        }
+    - Calling the function:
+        console.log(variable_name(arguments));
