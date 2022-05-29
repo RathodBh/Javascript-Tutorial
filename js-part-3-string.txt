@@ -1,0 +1,175 @@
+------------------------------------------------------------------------
+
+>> String handling:
+
+------------------------------------------------------------------------
+
+# string:
+    - strings are used to store the string/ character values
+    - written within double quotes or single quotes.
+    - Example:
+        let a = 'BH';
+        let b = "BH";
+        //let c = new String("BH"); //Using string constructor
+
+# length of the string:
+    - find the length of the string.
+    - Example: 
+        let a = "BH"
+        console.log(a.length) //2
+
+# Escape character: (Backslash escape char)
+    - To escape double quotes, single quotes etc.
+    - Example:
+        let a = "Hiii i am "BH" and my age is 22 "; //error
+        let b = "Hiii i am \"BH\" and my age is 22 "; //solve
+        OR
+        let b = 'Hiii i am "BH" and my age is 22 '; //solve
+
+# indexOf():
+    - Find the first occurance of the given substr from the string and returen the index.
+    - It returns -1 if the data is not found.
+    - It is case sensitive
+    - Example:
+        let statement = "Hello, how are you?";
+        console.log(statement.indexOf("how")); //7
+        console.log(statement.indexOf("how", 12)); //-1 (starting position to start find)
+
+# lastIndexOf():
+    - Find the first occurance of the given substr from the string and returen the index.
+    - It is start finding from last element.
+    - It returns -1 if the data is not found.
+    - It is case sensitive
+    - Example:
+        let statement = "Hello, how are you?";
+        console.log(statement.lastIndexOf("are")); //11
+
+# search():
+    - Used to find the substr from given string.
+    - We cant give second parameter(starting index).
+    - Example:
+        let statement = "Hello, how are you?";
+        console.log(statement.search("how")); //7
+
+------------------------------------------------------------------------
+
+## Extracting the string part:
+    - slice()
+    - substring()
+    - substr()
+
+# slice():
+    - It Extract the part of the string and return the extracted part in new string.
+    - Syntax:
+        string_name.slice(start_index, end_index);
+    - start_index is required. (included)
+    - end_index is optional. (not included)
+    - Example:
+        let str = "Apple, Banana, Kiwi";
+        console.log(str.slice(0, 5)); //Apple
+        console.log(str.slice(7, 13)); //Banana
+        console.log(str.slice(15)); //Kiwi
+        console.log(str.slice(7, -3));//Banana, K
+
+# substring():
+    - Similar to slice.
+    - It cannot accept negative index.
+    - Syntax:
+        string_name.substring(start_index, end_index);
+    - start_index is required. (included)
+    - end_index is optional. (not included)
+    - Example:
+        let str = "Apple, Banana, Kiwi";
+        console.log(str.substring(0, 5)); //Apple
+    
+# substr():
+    - Similar to slice.
+    - But second parameter is length.
+    - It cannot accept negative index in the length parameter.
+    - Syntax:
+        string_name.substr(start_index, length);
+    - start_index is required. (included)
+    - Example:
+        let str = "Apple, Banana, Kiwi";
+        console.log(str.substr(0, 5)); //Apple
+        console.log(str.substr(-4)); //Kiwi
+
+
+------------------------------------------------------------------------
+
+# Replace:
+    - Replace only first occurance.
+    - It doesn't change original array.
+    - By default the find and replace is case sensitive.
+    - Syntax:
+        string_name.replace(searchFor, replaceWith)
+    - Example:
+        let str = "Hello world";
+        let newStr = str.replace("world", "BH")
+        console.log(newStr); //Hello BH
+
+------------------------------------------------------------------------
+
+# Extract string characters
+    - charAt()
+    - charCodeAt()
+    - propertyAccess()
+
+# charAt():
+    - Returns the character at the specified index.
+    - Syntax:
+        string_name.charAt(index);
+    - Example:
+        let a = "ABCD";
+        console.log(a.charAt(0)); //A
+
+# charCodeAt():
+    - Return the Unicode value at the specified index.
+    - When index is out of bound or -1 then it returns NaN
+    - Syntax:
+        string_name.charCodeAt(index)
+    - Example:
+        let str = "abcd";
+        console.log(str.charCodeAt(0)); //97
+        console.log(str.charCodeAt(str.length - 1)); //100 (last element code)
+
+# propertyAccess():  (ES-5 (2009))
+    - Example:
+        let str = "Hello";
+        console.log(str[0]); //H
+
+------------------------------------------------------------------------
+
+# toUpperCase():
+    - Returns the uppercase of the string.
+    - Example:
+        let str = "hello";
+        console.log(str.toUpperCase()) //HELLO
+    
+# toLowerCase():
+    - Returns the lowercase of the string.
+    - Example:
+        let str = "HELLO";
+        console.log(str.toLowerCase()) //hello
+    
+# concat():
+    - Concat one or more string.
+    - Example:
+        let str = "Hello";
+        console.log(str.concat(" ", "World")) // Hello World
+    
+# trim():
+    - Used to remove the whitespaces from the both sides of the string
+    - Example:
+        let str = "                Hello World               ";
+        console.log(str.trim()) //Hello World
+    
+# split():
+    - Used to convert string to array.
+    - Example:
+        let str = "a, b,c ,d,e";
+        console.log(str.split(",")); // ['a','b','c','d','e']
+        console.log(str.split(" "))  
+        //      ['a,' ,
+        //      'b,c' ,
+        //      ',d,e']

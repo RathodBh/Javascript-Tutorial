@@ -1,0 +1,126 @@
+------------------------------------------------------------------------
+
+>> Date & Time:
+
+------------------------------------------------------------------------
+
+- All output are getting in terminal 
+- In vs code terminal and browser output both are different
+- Date object contaiun a number that represents milliseconds since 1 Jan 1970 UTC.
+- 4 ways to create a new Date object:
+    - new Date()
+    - new Date(year, month, day, hours, minutes, seconds, milliseconds)
+    - new Date(milliseconds)
+    - new Date(date string)
+
+# new Date():
+    - Using new Date() constructor.
+    - It returns the current Date & time
+    - Example:
+        let currDate = new Date();
+        console.log(currDate); //2022-05-27T07:47:08.477Z
+        console.log(currDate.toLocaleString()); // 27/05/2022, 07:47:08 PM
+        console.log(currDate.toString()); // Fri May 27 2022 19:47:08 GMT+0530 
+        
+        // Returns the milliseconds since 1 Jan 1970
+        console.log(Date.now()); //1653632784559
+
+# new Date(year, month, day, hours, minutes, seconds, milliseconds)
+    - Month represent by 0 to 11 (Jan = 0, Dec = 11)
+    - Example:
+        var d = new Date(2022, 05, 27, 10, 33, 30, 0)
+        console.log(d.toLocaleString()) // 6/27/2022, 10:33:30 AM
+
+        var d2 = new Date(2022, 05, 27)
+        console.log(d2.toLocaleString()) // 6/27/2022, 12:00:00 AM
+
+# new Date(milliseconds)
+    - Example:
+        var d = new Date(1653632784559)
+        console.log(d.toLocaleString()); // 5/27/2022, 11:56:24 AM
+
+# new Date(date string)
+    - Example:
+        var d = new Date("October 13, 2022 11:13:00");
+        console.log(d.toLocaleString()) // 13/08/2022 11:13:00 AM
+
+------------------------------------------------------------------------
+
+## Date & time METHODS (get)
+
+------------------------------------------------------------------------
+
+# Example:(date)
+    var d = new Date()
+
+    //Return the local string of the date
+    console.log(d.toLocaleString())  // 5/27/2022, 12:10:53 PM
+
+    //Return the local string date of the date
+    console.log(d.toLocaleDateString())  // 5/27/2022
+
+    //Return the local string time of the date
+    console.log(d.toLocaleTimeString())  // 12:10:53 PM
+
+    //Return the Year of the date
+    console.log(d.getFullYear())  // 2022
+
+    //Return the Month of the date (0 to 11)
+    console.log(d.getFullYear())  // 4
+
+    //Return the only Date of the date 
+    console.log(d.getDate())  // 27
+
+    //Return the Day of the date (0 to 6)
+    console.log(d.getDay())  // 5
+
+# Example: (time)
+    var d = new Date();
+
+    //Return the time in milliseconds
+    console.log(d.getTime()) // 1653634450451
+
+    // Returns the hours(0 to 23)
+    console.log(d.getHours()) // 12
+
+    // Returns the minutes(0 to 59)
+    console.log(d.getMinutes()) //27
+
+    // Returns the seconds(0 to 59)
+    console.log(d.getSeconds()) //51
+    
+    // Returns the milliseconds
+    console.log(d.getMilliseconds()) // 972
+------------------------------------------------------------------------
+
+## Date & time METHODS (set)
+
+------------------------------------------------------------------------
+- Returns the milliseconds
+# Example:(date)
+    var d = new Date()
+
+    //Set Year of the date
+    console.log(d.setFullYear(2022))  
+
+    //Set the Month and day of the date using setFullYear (0 to 11)
+    console.log(d.setFullYear(2022, 04, 27))  
+
+    //Set the only month of the date 
+    console.log(d.setMonth(4))  
+
+    //Return the Day of the date (0 to 6)
+    console.log(d.getDay())  // 5
+
+# Example: (time)
+    var d = new Date();
+
+    console.log(d.setTime())
+
+    console.log(d.setHours(5)) // milliseconds
+
+    console.log(d.setMinutes(5)) // milliseconds
+
+    console.log(d.setSeconds(5)) // milliseconds
+
+    console.log(d.setMilliseconds(5)) // milliseconds

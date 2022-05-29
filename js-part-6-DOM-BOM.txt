@@ -1,0 +1,243 @@
+------------------------------------------------------------------------
+
+>> DOM (Document Object Model)
+
+------------------------------------------------------------------------
+
+# window vs document
+    - window: It is the main container or we can say global object
+            and any operations related to entire browser window can 
+            be a part of window object.
+    - document: DOM is the child of window object
+
+    - window: All the methods like object, methods or properties.
+            If they are part of window object then we do not refer
+            the window object.
+    - document: we need to refer the document, if we want to use
+            the document object, methods or properties.
+
+    - window: It has methods, properties and object. Ex: setTimeout()
+            or setInterval() are the methods, where as document is object
+            of window and it has a screen object with properties 
+            describing the physical display.
+    - document: It is just the object of the global object that is window,
+            which deals with document the HTML elements themselves.
+
+------------------------------------------------------------------------
+
+# DOM vs BOM
+# DOM(Document Object Model) vs BOM(Browser Object Model or Window object)
+    - Window
+        > DOM 
+            >(document)
+
+        > BOM
+            > navigator
+            > screen
+            > location
+            > frames
+            > history
+            > XML HttpRequest
+        
+        > Javascript    
+            > Object
+            > Array
+            > Function
+            > etc..
+
+------------------------------------------------------------------------
+
+>> Window properties (BOM)
+
+------------------------------------------------------------------------
+
+# inneHeight:
+    - Used to return the height of the browser screen.
+    - Ex:
+        > open any website
+        > right click and select inspect
+        > Select console
+        > type:
+            innerHeight
+            OR  
+            window.innerHeight
+
+# innerWidth:
+    - Used to return the width of the browser screen.
+    - Ex:
+        > open any website
+        > right click and select inspect
+        > Select console
+        > type:
+            innerWidth
+            OR  
+            window.innerWidth
+    
+# history.back():
+    - Used to go at previous visited webpage
+    - Ex:
+        window.history.back()
+
+# location.href:
+    - Used to show/change the current URL or href.
+    - Ex:
+        window.location.href;
+        OR
+        location.href;
+
+        //change the location URL
+        location.href = "https://www.google.com/";
+
+# alert();
+    - Used to show the message:
+    - Ex:
+        alert("Success");
+
+# confirm():
+    - Confirm before the perform specified task.
+    - Ex:
+        if(confirm("Open google?")){
+            location.href = "https://www.google.com/";
+        }
+
+# prompt():
+    - Used to get input from user.
+    - Ex:
+        let a = prompt("Enter the number");
+        console.log(a);
+
+------------------------------------------------------------------------
+
+>> DOM (Document Object Model) properties & methods
+
+------------------------------------------------------------------------
+
+# document:
+    - returns the whole document of you webpage or HTML
+    - from <!DOCTYPE html> to </html>
+
+# document.documentElement:
+    - returns the root element of the HTML
+    - from <html> to </html>
+
+# document.head:
+    - return the head section of the HTML
+    - from <head> to </head>
+
+# document.body:
+    - return the body section of the HTML
+    - from <body> to </body>
+
+# document.body.childNodes:
+    - returns the all child nodes of the body in form of array.
+    - It includes tab, enter or whitespaces.
+
+# document.body.children:
+    - returns the actual childs of the body.
+    - It doesn't includes tab, enter or whitespaces.
+
+# document.body.hasChildNodes():
+    - returns true if childNode is exist
+    - returns false if childNode is doesn't exist
+
+# document.body.firstChild:
+    - returns the first child Node of the body.
+    - It includes tab, enter or whitespaces.
+
+# document.body.lastChild:
+    - returns the last child Node of the body.
+    - It includes tab, enter or whitespaces.
+
+# document.body.firstElementChild:
+    - returns the first child of the body.
+    - It doesn't includes tab, enter or whitespaces.
+
+# document.body.lastElementChild:
+    - returns the last child of the body.
+    - It doesn't includes tab, enter or whitespaces.
+
+# document.body.firstElementChild.firstElementChild:
+    - returns the first child of the body of first child.
+    - It doesn't includes tab, enter or whitespaces.
+
+# document.body.parentNode:
+    - It returns the parent Node of the body
+    - Ex:
+        - It returns <html>..</html>
+
+# document.body.parentElement:
+    - It returns the parent of the body
+    - Ex:
+        - It returns <html>..</html>
+    
+# document.head.nextSibling:
+    - It returns the next Sibling.
+    - It includes tab, enter or whitespaces.
+    
+# document.head.previousSibling:
+    - It returns the previous Sibling.
+    - It includes tab, enter or whitespaces.
+    
+# document.head.nextElementSibling:
+    - It returns the next Sibling element.
+    - It doesn't includes tab, enter or whitespaces.
+    
+# document.head.previousElementSibling:
+    - It returns the previous Sibling element.
+    - It doesn't includes tab, enter or whitespaces.
+
+------------------------------------------------------------------------
+
+# document.getElementById():
+    - Select the id property of HTML
+    - Ex:
+        document.getElementById('id_name')
+        OR
+        document.getElementById('id_name').innerHTML //change or get content
+
+# document.getElementsByClassName():
+    - Select the class property of HTML
+    - Ex:
+        document.getElementsByClassName('class_name')
+        OR
+        document.getElementsByClassName('class_name').innerHTML //change or get content
+    
+# document.getElementsByTagName():
+    - Select tag name of HTML
+    - Ex:
+        document.getElementsByTagName('tag_name')
+        OR
+        document.getElementsByTagName('tag_name').innerHTML //change or get content
+    
+# document.getElementsByName():
+    - Select the name property of HTML
+    - Ex:
+        document.getElementsByName('name')
+        OR
+        document.getElementsByName('name').innerHTML //change or get content
+    
+# document.getElementsByName().value:
+    - Used to get the value of the input fields. like, radioButton, textBox etc
+    - Ex:
+        document.getElementsByName('roll_no').value;
+
+# document.querySelector():
+    - Select only first occurance.
+    - Select the tagname, class, id etc property of HTML
+    - Select using tag name by tagname, class by .class_name, id by #id_name.
+    - Syntax:
+        document.querySelector(selector)
+        
+    - Ex:
+        document.querySelector('p') // tag
+        OR
+        document.querySelector('.name') //class
+        OR
+        document.querySelector('#name') //id
+        OR
+        document.querySelector('p').innerHTML //change or get content
+        OR
+        document.querySelector('ul li.web_class')
+
+
+ 

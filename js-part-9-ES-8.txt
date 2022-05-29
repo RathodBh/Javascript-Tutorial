@@ -1,0 +1,98 @@
+------------------------------------------------------------------------
+
+## ES-8(2017) Features :
+
+------------------------------------------------------------------------
+
+- String padding
+- Object.values()
+- Object.entries()
+
+# string padding:
+    - It is used to give padding to the string.
+    - Functions:
+
+    - padStart():
+        - Syntax:
+            string_name.padStart(number_of_space)
+        - Ex:
+            let str1 = "BH";
+            let str = str1.padStart(5);
+            console.log(str) // "   BH"
+    
+    - padEnd():
+        - Syntax:
+            string_name.padEnd(number_of_space)
+        - Ex:
+            let str1 = "BH";
+            let str = str1.padEnd(5);
+            console.log(str) // "BH   "
+
+# object.values():
+    - Returns the array of only values of specified object.
+    - Ex:
+        const obj = {name : 'BH', age : 21};
+        console.log( Object.values(obj) ); // ['BH', 21]
+    
+# object.entries():
+    - Returns all data in array form.
+    - Ex:
+        const obj = {name : 'BH', age : 21};
+        console.log( Object.entries(obj) ); // [ ['name', 'BH'], [ 'age', 21] ]
+    
+------------------------------------------------------------------------
+
+## flat() :
+
+------------------------------------------------------------------------
+
+- Similar to reduce()
+- reduce() method only converts 2D to 1D. 
+- flat() is used to flat 2D or 3D or moew into 1D array.
+- By default the flat method flat an array only 1 level.
+- Ex:
+    const arr = [
+        ['zone_1','zone_1'],
+        ['zone_1','zone_1'],
+        ['zone_1','zone_1'],
+        ['zone_1',['zone_1','zone_1']]
+    ];
+
+    console.log(arr.flat());
+    //output:
+    //[ 'zone_1','zone_1','zone_1','zone_1','zone_1','zone_1','zone_1', ['zone_1','zone_1']];
+
+    console.log(arr.flat(2))
+    OR
+    console.log(arr.flat(infinity));
+    //output
+    // [ 'zone_1','zone_1','zone_1','zone_1','zone_1','zone_1','zone_1', 'zone_1','zone_1'];
+
+------------------------------------------------------------------------
+
+## object.fromEntries() :
+
+------------------------------------------------------------------------
+
+- Converts result of object.entries() into normal object.
+- Example:
+    const obj = {
+        name: 'bh',
+        age: 21
+    }
+    const ent = Object.entries(obj);
+
+    //Back to normal
+    object.fromEntries(ent);
+
+------------------------------------------------------------------------
+
+## object.fromEntries() : {ES 11 - ES 2020}
+
+------------------------------------------------------------------------
+
+- BigInt
+- Use 'n' after number
+- Ex:
+    let n = 7696757506067n
+    console.log(typeof(n)) //bigInt

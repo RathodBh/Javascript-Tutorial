@@ -1,0 +1,107 @@
+------------------------------------------------------------------------
+
+## Event propagation :
+
+------------------------------------------------------------------------
+
+- This mode determines in which order the elements receive the event.
+- The event propagation:
+    > window
+    > document
+    > <html>
+    > <body>
+    > <div>
+    > <button>
+- From top to bottom => Capture phase
+- From bottom to top => Bubble phase
+- By default Event bubbling propagation.
+
+# Event Bubbling:
+    - By default Event bubbling propagation.
+    - Bottom to top approach
+    - The event is first captured and handled by the innermost element
+        and then propagated to outer element.
+    - To activate/show:
+        element.addEventListener('event',()=>{}, false);
+    
+# Event capturing :
+    - Top to bottom approach.
+    - The event is first captured by the outer most element and propagated to the inner element.
+    - Capturing is also called "trickling". which help remember propagation order.
+    - To activate/show:
+        element.addEventListener('event',()=>{}, true);
+
+# stop propagation :
+    - Syntax:
+        event.stopPropagation();
+    
+------------------------------------------------------------------------
+
+## Call back & Higher order function :
+
+------------------------------------------------------------------------
+
+# Higher order function:
+    - This function can accept another function as a argument.
+    - Ex: calc() in below example.
+
+# Call back function :
+    - this function pass as an argument in another function.    
+    - Ex: add(), sub() in below example.
+
+- Example:
+    const add = (a,b) =>{
+        return a + b;
+    }
+    const sub = (a,b) =>{
+        return a - b;
+    }
+
+    // Higher order function
+    const calc = (a,b,operator) =>{
+        return operator(a,b); 
+        // indirectly call the another function
+    }
+
+    console.log(calc(5,2,add)) // 7
+    console.log(calc(5,2,sub)) // 3
+
+------------------------------------------------------------------------
+
+## Hoisting :
+
+------------------------------------------------------------------------
+
+- It is a mechanism where variables and functions declarations are moved to top of their scope
+    before the code execution.
+- const and let are do not use before the declaration.
+- Example:
+    console.log(myName); //undefined
+    var myName;
+    myName = "BH";
+
+- This code will be converted into this before execution:
+    var myName;
+    console.log(myName); //undefined
+    myName = "BH";
+
+------------------------------------------------------------------------
+
+## Scope chaining & Lexical scoping :
+
+------------------------------------------------------------------------
+
+- We can see what the scope chain will be by looking at the code.
+- Ex:
+    const PI = 3.14;
+
+- Parent variables can be used by child but vice-versa not possible known as lexical scoping.
+
+------------------------------------------------------------------------
+
+## Closer :
+
+------------------------------------------------------------------------
+
+- It gives you access to an outer function from inner function.
+- Closer are created everytime when the function is created. 

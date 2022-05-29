@@ -1,0 +1,185 @@
+
+------------------------------------------------------------------------
+
+>> Object Oriented Javascript
+
+------------------------------------------------------------------------
+
+# Object literals:
+    - It is a simply a key:value pair data structure.
+    - Storing variables and functions together in one container,
+        we can refer this as an object.
+    - Syntax 1:
+        let obj_name = {
+            key : "value",
+            key2 : value,
+            function_name : function(){
+                //statement(s)
+            }
+        }
+    
+    - Syntax 2:
+        let obj_name = {
+            key : "value",
+            key2 : value,
+            function_name (){
+                //statement(s)
+            }
+        }
+    - Example 1:
+        let bioData = {
+            name : "BH",
+            age : 21,
+            getData : function(){
+                console.log(`My name is ${bioData.name} and my age is ${bioData.age}`);
+            }
+        }
+
+        //calling
+        console.log(bioData.name);
+        bioData.getData();
+
+     - Example 2: Object within object
+        let bioData = {
+            name : {
+                firstName : "Bhavesh",
+                lastName : "Rathod"
+            },
+            age : 21,
+            getData (){
+                console.log(`My name is ${bioData.name} and my age is ${bioData.age}`);
+            }
+        }
+
+        //calling
+        console.log(bioData.name,firstName);
+        bioData.getData();
+    
+------------------------------------------------------------------------
+
+## This object
+    - It contain the current context.
+    - It can have different values depending on where it is placed.
+    - If you use fat arrow functio in object then it will return window object.
+    - Ex:
+        //Run in browser's console
+
+        // Returns the window object
+        console.log(this);
+
+        // Returns the window object
+        function myFun(){
+            console.log(this);
+        }
+        myFun();
+
+        // Returns the BH
+        let myName = "BH";
+        function myFun(){
+            console.log(this.myName);
+        }
+        myFun();
+
+        // Returns the all content(key:value) of object
+        const obj = {
+            myAge : 23,
+            fun(){
+                console.log(this) // all key value pair.
+
+                console.log(this.myAge) //23
+            }
+        }
+
+------------------------------------------------------------------------
+
+## Array Destructuring : {ES-7}
+
+------------------------------------------------------------------------
+    - Ex:
+        const myData = ["Bhavesh", 21, "male"];
+
+        // Simple way
+        let myName = myData[0];
+        let age = myData[1];
+        let gen = myData[2];
+
+        OR
+
+        // Destructuring
+        let [myName, age, gen] = myData;
+        console.log(age) // 21
+    
+    - You can add also new value/data.
+    - Ex:
+        let [myName, age, gen, degree = "MCA"] = myData;
+    
+------------------------------------------------------------------------
+
+## Object Destructuring : {ES-7}
+
+------------------------------------------------------------------------
+
+    - Example 1:
+        let bioData = {
+            name : "BH",
+            age : 21
+        }
+
+        //calling simple way
+        console.log(bioData.name);
+
+        OR
+
+        // Destructuring
+        let {name, age} = bioData;
+        
+------------------------------------------------------------------------
+
+## Object properties :
+
+------------------------------------------------------------------------
+
+- We can use now dynamic properties.
+- Ex:1 without using dynamic data:
+    let myName = "BH";
+    const myData = {
+        myName : "is my name",
+        23 : "is my age"
+    }
+    console.log(myData);
+    // {'23' : 'is my age', myName: 'is my name'}
+
+- Ex:2 Using dynamic data:
+    let myName = "BH";
+    const myData = {
+        [myName] : "is my name",
+        [20 + 3] : "is my age"
+    }
+    console.log(myData);
+    // {'23' : 'is my age', BH : 'is my name'}
+
+- Ex: 3
+    let myName = "BH";
+    let myAge = 21;
+    const myData = {myName, myAge};
+
+    console.log(myData);
+    // {myName : 'BH', myAge : 21 }
+
+
+------------------------------------------------------------------------
+
+## Spread operator {ES-7}
+
+------------------------------------------------------------------------
+
+- Do not Repeat Yourself concept.
+- Using ... symbol
+- Example:
+    const colors = ['red', 'green', 'blue', 'white']
+
+    const myColors = ['red', 'green', 'blue', 'white', 'black', 'brown']
+    OR
+    const myFavColors = ['black', 'brown', ...colours];
+    OR
+    const myFavColors = [...colours, 'black', 'brown'];

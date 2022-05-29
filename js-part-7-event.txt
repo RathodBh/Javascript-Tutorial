@@ -1,0 +1,231 @@
+------------------------------------------------------------------------
+
+>> Events
+
+------------------------------------------------------------------------
+# writing ways for event:
+    - alert()
+    - By calling the function
+    - Using inline event 
+    - Using event listener
+
+# alert():
+    - Ex:
+        <button onclick="alert('No one use me')">Click me</button>
+    
+# By calling the function
+    - Ex:
+        <button onclick="myFun()">Click me</button>
+        <script>
+            const myFun = () => {
+                alert('Most common usedful way');
+            }
+        </script>
+
+# Inline
+    - In this way the event is override.
+    - If two same events are written then it calls only last event.
+    - Ex:
+        <button id="btn1"> Click me</button>
+        <script>
+            const ele = document.querySelector('#btn1');
+            ele.onclick = function(){
+                alert('Most common usedful way 3rd way');
+            }
+        </script>
+
+# Using addEventListener
+    - You can write multiple time same events.
+    - All events run step by step.
+    - Ex:
+        <button id="btn1"> Click me</button>
+        <script>
+            const ele = document.querySelector('#btn1');
+            ele.addEventListener('click', () => {
+                alert('Most common usedful way 3rd way');
+            });
+        </script>
+
+
+------------------------------------------------------------------------
+
+>> EVENT Object
+
+------------------------------------------------------------------------
+
+# event:
+    - Used to show all property of particular event.
+
+# event.target:
+    - Returns the elementon which we are calling the event.
+
+# event.type:
+    - return the type of the event.
+
+# event.key:
+    - return the entered key
+
+
+------------------------------------------------------------------------
+
+>> Mouse Events
+
+------------------------------------------------------------------------
+
+- onmousedown : when user hold the click at specified element
+- onmouseup : when user release the click at specified element
+- mouseenter: (addEventListener)
+- mouseleave (addEventListener)
+- ETC....
+
+------------------------------------------------------------------------
+
+>> Keyboard Events
+
+------------------------------------------------------------------------
+
+- Used when user input any key in input field
+- onkeydown: when user hold the key at specified element
+- onkeyup: when user release the key at specified element
+- onkeypress: when user press any key at specified element
+
+------------------------------------------------------------------------
+
+>> Input Events
+
+------------------------------------------------------------------------
+
+- onchange: when cange the input like, radio button, dropdown list etc.
+
+
+
+
+------------------------------------------------------------------------
+
+>> Time based events
+
+------------------------------------------------------------------------
+
+# setTimeout()
+# clearTimeout()
+# setInterval()
+# clearInterval()
+
+# setTimeout(function, milliseconds):
+    - Executes a function after waiting a specified number of milliseconds.
+    - Syntax:
+        setTimeout(callBackFunction(){
+            //statement
+        }, milliseconds);
+
+        OR
+
+        setTimeout(() => {
+            //statement
+        }, milliseconds);
+
+    - Example:
+        <p id="myName">Show my name</p>
+        <button id="btn">Click here</button>
+
+        <script>
+            let myName = document.querySelector('#myName');
+            let btn = document.querySelector('#btn');
+
+            btn.addEventListener('click', () => {
+                myName.innerHTML = "Loading...";
+                setTimeout(() => {
+                    myName.innerHTML = "BH";
+                }, 1000);
+            });
+        </scipt>
+
+# clearTimeout():
+    - Used to stop the setTimeout.
+    - Syntax:
+        clearInterval(setTimeout_variable)
+    - Example:
+        <p id="myName">Show my name</p>
+        <button id="btn">Click here</button>
+        <button id="btn_stop">Stop</button>
+        <script>
+            let myName = document.querySelector('#myName');
+            let btn = document.querySelector('#btn');
+            let btn_stop = document.querySelector('#btn_stop');
+            var nm;
+
+            btn.addEventListener('click', () => {
+                myName.innerHTML = "Loading...";
+                nm = setTimeout(() => {
+                    myName.innerHTML = "BH";
+                }, 10000);
+            });
+            btn_stop.addEventListener('click', () => {
+                clearTimeout(nm);
+            });
+
+        </scipt>
+
+
+# setInterval(function, milliseconds):
+    - Similar to setTimeout(), but repeat the execution of function continuously
+        at specified milliseconds.
+    - Syntax:
+        setInterval(callBackFunction(){
+            //statement
+        }, milliseconds);
+
+        OR
+
+        setInterval(() => {
+            //statement
+        }, milliseconds);
+
+    - Example:
+        <p id="myName">Show counter</p>
+        <button id="btn">Click here</button>
+
+        <script>
+            let myName = document.querySelector('#myName');
+            let btn = document.querySelector('#btn');
+            let cnt = 0;
+            btn.addEventListener('click', () => {
+                myName.innerHTML = "Loading...";
+                setInterval(() => {
+                    myName.innerHTML = cnt;
+                    cnt++;
+                }, 1000);
+            });
+        </scipt>
+
+# clearInterval():
+    - Used to stop the setInterval() by giving reference.
+    - Syntax:
+        clearInterval(setInterval_variable)
+
+    - Example:
+        <p id="myName">Show counter</p>
+        <button id="btn">Click here</button>
+        <button id="btn_stop">Stop</button>
+
+        <script>
+            let myName = document.querySelector('#myName');
+            let btn = document.querySelector('#btn');
+            let btn_stop = document.querySelector('#btn_stop');
+            let cnt = 0;
+            let nm;
+
+            btn.addEventListener('click', () => {
+                myName.innerHTML = "Loading...";
+                nm = setInterval(() => {
+                    myName.innerHTML = cnt;
+                    cnt++;
+                }, 1000);
+            });
+            btn_stop.addEventListener('click', () => {
+                clearInterval(nm);
+            })
+        </scipt>
+
+
+
