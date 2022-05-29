@@ -103,5 +103,109 @@
 
 ------------------------------------------------------------------------
 
+- Similar like lexical scoping.
 - It gives you access to an outer function from inner function.
 - Closer are created everytime when the function is created. 
+- It holds the values of parameters of the functions.
+- Ex: //same like lexical scope
+    const outer = (a) => {
+        let b = 10;
+        const inner = () => {
+            console.log(`The sum is : ${a+b}`);
+        }
+        inner();
+    }
+
+    outer(5);
+
+    // output: The sum is : 15
+
+- Ex2:   
+    const outer = (a) => {
+        let b = 10;
+        const inner = () => {
+            console.log(`The sum is : ${a+b}`);
+        }
+        return inner;
+    }
+
+    let checkClosure = outer(5);
+    checkClosure();
+
+    // output: The sum is : 15
+
+------------------------------------------------------------------------
+
+## use strict mode : {Es-2014}
+
+------------------------------------------------------------------------
+- Ex: {without strict mode}
+    x = 10;
+    console.log(x);
+    // 10
+
+- Ex: {Using strict mode}
+    "use strict"
+    x = 10;
+    console.log(x);
+    // It gives error
+
+
+------------------------------------------------------------------------
+
+## Synchronous vs Asynchronous:
+
+------------------------------------------------------------------------
+
+# Synchronous:
+    - All tasks perform step by step.
+    - Example : 
+        const fun2 = () => {
+            console.log("fun2");
+        }
+
+        const fun = () => {
+            console.log("fun1")
+            fun2()
+            console.log("fun1 again")
+        }
+
+        fun();
+
+        // Output:
+        // fun1
+        // fun2
+        // fun1 again
+
+# Asynchronous : 
+    - All tasks perform step by step but it can't wait for time consuming taks.
+    - Example : 
+        const fun2 = () => {
+            setTimeout(()=>{
+                console.log("fun2 again")
+            }, 2000);
+            console.log("fun2")
+        }
+
+        const fun = () => {
+            console.log("fun1")
+            fun2()
+            console.log("fun1 again")
+        }
+
+        fun();
+
+        // Output:
+        // fun1
+        // fun2
+        // fun1 again
+        // fun2 again
+
+------------------------------------------------------------------------
+
+## Event loop:
+
+------------------------------------------------------------------------
+
+- All the process of execution known as event loop.
+- It defines the priority of the tasks.
