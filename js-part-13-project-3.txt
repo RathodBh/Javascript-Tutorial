@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Increment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Thermometer</title>
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column
+        }
+
+        .counter {
+            font-size: 32px;
+            padding-top: 10px;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <i class="fa fa-check fa-5x" aria-hidden="true"></i>
+        <br>
+        <span class="counter" data-target="4000"></span>
+        <p>Project completed</p>
+    </div>
+    <div class="container">
+        <i class="fa fa-users fa-5x" aria-hidden="true"></i>
+        <br>
+        <span class="counter" data-target="15000"></span>
+        <p>Our happy client</p>
+    </div>
+    <div class="container">
+        <i class="fa fa-rocket fa-5x" aria-hidden="true"></i>
+        <br>
+        <span class="counter" data-target="500"></span>
+        <p>project ongoing</p>
+    </div>
+
+    <script>
+        let counters = document.querySelectorAll('.counter');
+
+        counters.forEach((counter) => {
+            counter.innerHTML = 0;
+            const update = () => {
+
+                let target = +counter.getAttribute('data-target');
+
+                let start = +counter.innerHTML;
+                // console.log(start);
+                const inc = target / 100;
+
+                if (start < target) {
+                    counter.innerHTML = `${Math.round(start + inc)}`;
+                    setTimeout(() => {
+                        update();
+                    }, 10);
+                }
+                else {
+                    counter.innerHTML = target;
+                }
+            }
+            update()
+        });
+
+    </script>
+</body>
+
+</html>

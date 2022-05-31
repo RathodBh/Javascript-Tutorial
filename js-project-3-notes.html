@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header{
+            width: 100%;
+            background: green;
+            height: 80px;
+            display: flex;
+            align-items:center;
+            font-size: 23px;
+            color: white;
+            justify-content: space-between;
+        }
+        header i{
+            margin: 0 10px;
+        }
+        header button{
+            padding: 10px 20px;
+            background: green;
+            color: white;
+            border: 1px solid white;
+            margin-right: 10px;
+            border-radius: 50px;
+            outline:0;
+        }
+        header button:hover{
+            background: white;
+            color: green;
+            border: 1px solid green;
+        }
+        header button i{
+            margin:0px;
+            padding-right: 5px
+        }
+        .main{
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .sub{
+            height: 200px;
+            width: 300px;
+            /* background: gray; */
+            box-shadow: 0 0 4px grey;
+            margin: 10px 20px;
+            position: relative;
+            padding: 5px;
+            padding-top:50px;
+        }
+        .sub .fa.fa-trash{
+            position: absolute;
+            top: 6%;
+            right: 6%;
+            color: white;
+            border: 1px solid red;
+            padding: 5px 7px;
+            border-radius: 50%;
+            background: red;
+        }
+        .sub .fa.fa-trash:hover{
+            background: white;
+            color: red;
+
+        }
+        .sub .fa.fa-pencil-square-o{
+            position: absolute;
+            top: 6%;
+            right: 17%;
+            color: white;
+            border: 1px solid green;
+            padding: 5px 6px;
+            border-radius: 50%;
+            background: green;
+        }
+        .sub .fa.fa-pencil-square-o:hover{
+            background: white;
+            color: green;
+        }
+        textarea{
+            width: 100%;
+            /* margin-top: 50px; */
+            resize: none;
+            /* height: calc(100% - 50px); */
+            border: 0;
+            height: 100%;
+            outline: none;
+        }
+        .hidden{
+            display: none;
+        }
+        .data{
+            height: calc(100% - 50px);
+            word-wrap: break-word;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <i class="fa fa-sticky-note-o" aria-hidden="true"> BH NOTES</i>
+       <button id="add" class="btn_add"> <i class="fa fa-plus" aria-hidden="true"></i>ADD</button>
+    </header>
+    
+    <div class="main">
+    </div>
+    
+    <script type="text/javascript">
+        let addButton = document.querySelector('#add');
+        let main = document.querySelector('.main');
+
+        const updateLSData = () => {
+            const textAreaData = document.querySelectorAll('textarea');
+            const allData = [];
+            textAreaData.forEach((note)=>{
+                return allData.push(note.value);
+            });
+
+            console.log(allData);
+
+            //set all data to localStorage
+            localStorage.setItem('notes',JSON.stringify(allData));
+        }
+
+        //add note function
+        const addNote = (text = '' ) => {
+
+            const sub = document.createElement('div');
+            sub.classList.add('sub');
+
+            const htmlData = `<i class="fa fa-pencil-square-o edit" aria-hidden="true"></i>
+            <i class="fa fa-trash del" aria-hidden="true"></i><div class="data ${text?"":"hidden"}"></div>
+            <textarea class="${text?"hidden":""}"></textarea>`;
+
+            sub.insertAdjacentHTML('afterbegin',htmlData);
+
+            //References
+            const del = sub.querySelector('.del');
+            const edit = sub.querySelector('.edit');
+            const dataDiv = sub.querySelector('.data');
+            const txtArea = sub.querySelector('textarea');
+
+            //del note
+            del.addEventListener('click', ()=>{
+                sub.remove();
+                updateLSData();
+            })
+
+           //update old data
+            txtArea.value = text;
+            dataDiv.innerHTML = text;
+
+            //edit
+            edit.addEventListener('click', ()=>{
+                dataDiv.classList.toggle('hidden');
+                txtArea.classList.toggle('hidden');
+            })
+
+            //send data to the div (.data)
+            txtArea.addEventListener('change', (event) => {
+                dataDiv.innerHTML = event.target.value;
+                updateLSData();
+            })
+
+            main.appendChild(sub);
+
+        }
+       
+
+        // get data from localStorage.
+        const notes = JSON.parse(localStorage.getItem('notes'));
+        if(notes){
+            notes.forEach((curr)=>{
+                addNote(curr) 
+            })
+        }
+        
+        //add note
+        addButton.addEventListener('click', () => {
+            addNote()
+        });
+    </script>
+</body>
+</html>

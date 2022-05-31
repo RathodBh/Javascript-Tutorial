@@ -1,0 +1,420 @@
+------------------------------------------------------------------------
+
+## Event propagation :
+
+------------------------------------------------------------------------
+
+- This mode determines in which order the elements receive the event.
+- The event propagation:
+    > window
+    > document
+    > <html>
+    > <body>
+    > <div>
+    > <button>
+- From top to bottom => Capture phase
+- From bottom to top => Bubble phase
+- By default Event bubbling propagation.
+
+# Event Bubbling:
+    - By default Event bubbling propagation.
+    - Bottom to top approach
+    - The event is first captured and handled by the innermost element
+        and then propagated to outer element.
+    - To activate/show:
+        element.addEventListener('event',()=>{}, false);
+    
+# Event capturing :
+    - Top to bottom approach.
+    - The event is first captured by the outer most element and propagated to the inner element.
+    - Capturing is also called "trickling". which help remember propagation order.
+    - To activate/show:
+        element.addEventListener('event',()=>{}, true);
+
+# stop propagation :
+    - Syntax:
+        event.stopPropagation();
+    
+------------------------------------------------------------------------
+
+## Call back & Higher order function :
+
+------------------------------------------------------------------------
+
+# Higher order function:
+    - This function can accept another function as a argument.
+    - Ex: calc() in below example.
+
+# Call back function :
+    - this function pass as an argument in another function.    
+    - Ex: add(), sub() in below example.
+
+- Example:
+    const add = (a,b) =>{
+        return a + b;
+    }
+    const sub = (a,b) =>{
+        return a - b;
+    }
+
+    // Higher order function
+    const calc = (a,b,operator) =>{
+        return operator(a,b); 
+        // indirectly call the another function
+    }
+
+    console.log(calc(5,2,add)) // 7
+    console.log(calc(5,2,sub)) // 3
+
+------------------------------------------------------------------------
+
+## Hoisting :
+
+------------------------------------------------------------------------
+
+- It is a mechanism where variables and functions declarations are moved to top of their scope
+    before the code execution.
+- const and let are do not use before the declaration.
+- Example:
+    console.log(myName); //undefined
+    var myName;
+    myName = "BH";
+
+- This code will be converted into this before execution:
+    var myName;
+    console.log(myName); //undefined
+    myName = "BH";
+
+------------------------------------------------------------------------
+
+## Scope chaining & Lexical scoping :
+
+------------------------------------------------------------------------
+
+- We can see what the scope chain will be by looking at the code.
+- Ex:
+    const PI = 3.14;
+
+- Parent variables can be used by child but vice-versa not possible known as lexical scoping.
+
+------------------------------------------------------------------------
+
+## Closer :
+
+------------------------------------------------------------------------
+
+- Similar like lexical scoping.
+- It gives you access to an outer function from inner function.
+- Closer are created everytime when the function is created. 
+- It holds the values of parameters of the functions.
+- Ex: //same like lexical scope
+    const outer = (a) => {
+        let b = 10;
+        const inner = () => {
+            console.log(`The sum is : ${a+b}`);
+        }
+        inner();
+    }
+
+    outer(5);
+
+    // output: The sum is : 15
+
+- Ex2:   
+    const outer = (a) => {
+        let b = 10;
+        const inner = () => {
+            console.log(`The sum is : ${a+b}`);
+        }
+        return inner;
+    }
+
+    let checkClosure = outer(5);
+    checkClosure();
+
+    // output: The sum is : 15
+
+------------------------------------------------------------------------
+
+## use strict mode : {Es-2014}
+
+------------------------------------------------------------------------
+- Ex: {without strict mode}
+    x = 10;
+    console.log(x);
+    // 10
+
+- Ex: {Using strict mode}
+    "use strict"
+    x = 10;
+    console.log(x);
+    // It gives error
+
+
+------------------------------------------------------------------------
+
+## Synchronous vs Asynchronous:
+
+------------------------------------------------------------------------
+
+# Synchronous:
+    - All tasks perform step by step.
+    - Example : 
+        const fun2 = () => {
+            console.log("fun2");
+        }
+
+        const fun = () => {
+            console.log("fun1")
+            fun2()
+            console.log("fun1 again")
+        }
+
+        fun();
+
+        // Output:
+        // fun1
+        // fun2
+        // fun1 again
+
+# Asynchronous : 
+    - All tasks perform step by step but it can't wait for time consuming taks.
+    - Example : 
+        const fun2 = () => {
+            setTimeout(()=>{
+                console.log("fun2 again")
+            }, 2000);
+            console.log("fun2")
+        }
+
+        const fun = () => {
+            console.log("fun1")
+            fun2()
+            console.log("fun1 again")
+        }
+
+        fun();
+
+        // Output:
+        // fun1
+        // fun2
+        // fun1 again
+        // fun2 again
+
+------------------------------------------------------------------------
+
+## Event loop:
+
+------------------------------------------------------------------------
+
+- All the process of execution known as event loop.
+- It defines the priority of the tasks.
+
+------------------------------------------------------------------------
+
+## Function currying :
+
+------------------------------------------------------------------------
+
+- Ex:
+    function sum(n1){
+        return function(n2){
+            return function(n3){
+                console.log(`The sum is : ${n1+n2+n3}`);
+            }
+        }
+    }
+
+    //calling
+    sum(2)(3)(5); //10
+
+    OR
+
+    const sum = (n1) => (n2) => (n3) => console.log(`The sum is : ${n1+n2+n3}`);
+        
+------------------------------------------------------------------------
+
+## AJAX call using XMLHttpRequest :
+
+------------------------------------------------------------------------
+
+- API: aplication programming interface.
+- Used for load content without loading page(reload).
+- All the data is available in array of object form.
+- Example:
+    - Lets fetch api like,
+        https://restcountries.com/v3.1/name/nepal
+    - in javascript write...
+        const request = new XMLHttpRequest();
+        request.open('GET', 'https://restcountries.com/v3.1/name/nepal');
+
+        request.send();
+
+        // to get the response
+        request.addEventListener('load',function(){
+            //const data = this.responseText;
+            const [data] = JSON.parse(this.responseText);
+            console.log(data);
+        });
+
+------------------------------------------------------------------------
+
+## JSON :
+
+------------------------------------------------------------------------
+
+- JSON stands for JavaScript Object Notation.
+- All the keys and values are string.
+- JSON.stringify method is used to convert javascript object to JSON format.
+- Ex:
+    var obj = {key1: "text", key2: true, key3: 78};
+    var json_string = JSON.stringify(obj);
+    console.log(json_string); // {"key1": "text", "key2": true, "key3": 78}
+    console.log(typeof(json_string)); //string
+
+- JSON.parse method is used to convert JSON format(string) to javascript .
+- Ex:
+    var json_string = {"key1": "text", "key2": true, "key3": 78};
+    var obj = JSON.parse(json_string);
+
+    console.log(obj); // {key1: "text", key2: true, key3: 78};
+    console.log(typeof(obj)); //object
+
+------------------------------------------------------------------------
+
+## PROMISES :
+
+------------------------------------------------------------------------
+
+- Used instead of XMLHttpRequest.
+- Using fetch().
+- 2 conditions: data will be fulfilled and failed.
+- Ex:
+    let myName = document.querySelector('#myName');
+
+        const setHeader = {
+            headers:{
+                Accept: "application/json"
+            }
+        }
+        fetch('https://icanhazdadjoke.com/',setHeader).then((res) => res.json() )
+        .then((data)=>{
+            console.log(data);
+            myName.innerHTML = data.joke
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    
+
+------------------------------------------------------------------------
+
+## Async await : {ES-8} 
+
+------------------------------------------------------------------------
+
+- Same as PROMISES.
+- Simple the form of PROMISES.
+- Syntax 1:
+    async function myFun() {
+        // statements
+    }
+   
+- Syntax 2:
+    const myFun = async () => {
+
+    }
+
+- Ex:
+    let myName = document.querySelector('#myName');
+    try{
+        const setHeader = {
+            headers:{
+                Accept: "application/json"
+            }
+        }
+        const res = await fetch('https://icanhazdadjoke.com/',setHeader);
+        const data = await res.json();
+        
+        console.log(data.joke); // random joke
+    }catch(err){
+        console.log(`ERROR: ${err}`); 
+    }
+
+------------------------------------------------------------------------
+
+## String to number
+
+------------------------------------------------------------------------
+
+- There are 3 ways.
+- way 1:
+    var n = +str;
+- way 2:
+    var n = Number(str)
+- way 3:
+    var n = parseFloat(str)
+
+------------------------------------------------------------------------
+
+## DOM :
+
+------------------------------------------------------------------------
+
+# document.createElement():
+    - Ex:
+        document.createElement('div')
+        document.createElement('p')
+
+# classList
+    - Ex:
+        const div = document.createElement('div');
+        div.classList.add('note');
+        // div.classList.remove('note2');
+
+# insertAdjecentHTML:
+    - Figure:
+        <!-- before begin -->
+        <p>
+            <!-- after begin -->
+
+            content
+
+            <!-- before end -->
+        </p>
+        <!-- after end -->
+
+    - Ex:
+        const htmlData = `
+            <div class="note">
+                <p>paragraph 1<span> Hello </span></p>
+            </div>
+        `;
+
+        const main = document.getElementById('main');
+        const sub = main.insertAdjecentHTML('afterbegin',htmlData);
+
+# appendChild:
+    - Ex:
+        const htmlData = `
+            <div class="note">
+                <p>paragraph 1<span> Hello </span></p>
+            </div>
+        `;
+        const main = document.getElementById('main');
+        main.insertAdjecentHTML('afterbegin',htmlData);
+
+        document.body.appendChild(main)
+
+------------------------------------------------------------------------
+
+## LocalStorage :
+
+------------------------------------------------------------------------
+
+- Used to store the data in browser's LocalStorage.
+- It will store data in string format.
+- To store data:
+    localStorage.setItem('notes',JSON.stringify("text data"))
+- To get data from LocalStorage:
+   JSON.stringify(localStorage.getItem('notes'))
